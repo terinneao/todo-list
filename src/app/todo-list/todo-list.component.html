@@ -1,0 +1,69 @@
+
+<div *ngIf="hero">
+
+  <h2>{{hero.Email | uppercase}} Details</h2>
+  <!-- <div><span>id: </span>{{hero.id}}</div> -->
+  <div>
+    <label for="hero-name">Hero name: </label>
+    <input id="hero-name" [(ngModel)]="hero.Email" placeholder="name">
+    
+  </div>
+  <!-- <button type="button" (click)="goBack()">go back</button>
+  <button type="button" (click)="save()">save</button> -->
+
+</div>
+
+<ul class="list-group">
+  <li
+    class="list-group-item"
+    *ngFor="let hero of heroes$ | async"
+    
+    >{{ hero.Email }}
+    {{ hero.Todo1 }}
+  
+  </li>
+</ul>
+
+
+<form [formGroup]="heroFormGroup">
+    <h4>{{ heroFormGroup.get('Email')?.value | uppercase }}</h4>
+    <!-- {{ heroFormGroup.value.Email }} -->
+    <!-- {{ heroFormGroup.getRawValue().Email }} -->
+    <label class="form-label" for="Email">Email</label>
+    <input class="form-control" type="text" id="Email" formControlName="Email" /><br>
+    <label class="form-label" for="Todo1">To-do List</label><br>
+    <input class="form-control" type="text" id="Todo1" formControlName="Todo1" /><br>
+    <input class="form-control" type="text" id="Todo2" formControlName="Todo2" /><br>
+    <input class="form-control" type="text" id="Todo3" formControlName="Todo3" /><br>
+  </form>
+  
+  <ul class="list-group">
+    <li
+      class="list-group-item list-group-item-action"
+      *ngFor="let hero of heroes$ | async">
+      <div class="d-flex justify-content-between">
+        <!-- <a class="text-decoration-none" routerLink="/hero-form/{{ hero.Email }}"> -->
+          <span class="badge">{{ hero.Email }}</span>
+          {{ hero.Todo1 }}
+          
+        <!-- </a> -->
+        <!-- <a
+          class="btn btn-danger btn-sm"
+          (click)="onDeleteHero(hero.id)" >
+          <i class="bi bi-trash"></i>
+        </a> -->
+      </div>
+    </li>
+  </ul>
+
+
+  <hr />
+  
+  <div class="d-flex justify-content-between">
+    <button class="btn btn-secondary" (click)="onBack()">Back</button>
+    <button class="btn btn-primary" (click)="onSave()">Save</button>
+  </div>
+  
+  <hr />
+  
+  {{ heroFormGroup.value | json }}

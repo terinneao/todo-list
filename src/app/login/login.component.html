@@ -1,0 +1,26 @@
+<div>
+    <label class="form-label" for="term">Email</label>
+    <input 
+      class="form-control"
+      type="text"
+      id="term"
+      [formControl]="termFormControl">
+    <button
+      class="btn btn-primary"
+      routerLink="/todo-list"
+      (click)="onSubmit()">
+      Submit
+    </button>
+
+    <ul class="list-group">
+      <a
+        class="list-group-item"
+        *ngFor="let hero of heroes$ | async"
+        routerLink="/todo-list/{{ hero.Email }}"
+        >{{ hero.Email }}</a>
+        
+    </ul>
+  
+  </div>
+
+  
